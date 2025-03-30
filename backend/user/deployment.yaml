@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newuserservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userapp
+  template:
+    metadata:
+      labels:
+        app: userapp
+    spec:
+      containers:
+        - name:  userapp
+          image: jaspreet2003/userservice:latest # Must match the local image name
+          imagePullPolicy: Never  # Prevents Kubernetes from pulling from a registry
+          ports:
+            - containerPort: 3001
+
+
+            # TO UPLOAD DOCKER IMAGES TO KUBERNETES MANUALLY
+            #step1.) cd productService
+            #step2.) docker login
+            #step3.) docker build -t jaspreet2003/productservice .
+            #step4.) docker push jaspreet2003/productservice
+            #step5.) kubectl create deployment productservice --image=jaspreet2003/productservice:latest
+            #step6.) kubectl get deployments,kubectl get pods, minikube dashboard
