@@ -1,0 +1,55 @@
+scrape_configs:
+  - job_name: "kong"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["kong:8001"]
+
+
+
+        #- targets: ["localhost:8001"]
+
+
+
+#ADD THIS IN DOCKER-COMPOSE FILE
+# prometheus:
+#     image: prom/prometheus
+#     container_name: prometheus
+#     restart: always
+#     volumes:
+#       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+#     ports:
+#       - "9090:9090"
+#     networks:
+#       - kong-net
+
+
+
+#TO ADD PROMETHEUS: curl -i -X POST http://localhost:8001/plugins --data "name=prometheus"
+#TO TEST: curl -X GET http://localhost:8001/plugins
+
+#http://localhost:9090/
+#http://localhost:9090/targets
+
+#to test the no. of req: curl -X GET http://localhost:8001/metrics | findstr kong_http_requests_total
+#to update prometheus: curl -X PATCH http://localhost:8001/plugins/fe4198b2-38ed-4918-9763-d2bebf583586 ^
+    #  --data "config.status_code_metrics=true" ^
+    #  --data "config.bandwidth_metrics=true" ^
+    #  --data "config.latency_metrics=true"
+
+
+
+# kong_http_requests_total
+# kong_kong_latency_ms_bucket
+# kong_nginx_connections_total
+
+
+#{__name__=~"kong_.*"}
+
+
+# kong_latency_bucket
+# kong_nginx_requests_total
+# kong_nginx_http_current_connections
+
+
+

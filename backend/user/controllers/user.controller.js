@@ -1,6 +1,7 @@
 const userModel = require("../models/user.models"); // Updated path
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken')
+const {subscribeToQueue,publishToQueue} = require('../rabbitmq')
 
 // register user
 module.exports.userRegisterController=async(req,res)=>{
@@ -37,8 +38,19 @@ const payload={
     password:hashPassword
 }
 
+
+
 const userData= new userModel(payload)
 const saveUser=await userData.save()
+
+    // ✅ Publish message to RabbitMQ
+    await publishToQueue("USER_CREATED", {
+        userId: saveUser._id,
+        name: saveUser.name,
+        email: saveUser.email,
+      });
+  
+
 res.status(201).json({
     data:saveUser,
     suceess:true,

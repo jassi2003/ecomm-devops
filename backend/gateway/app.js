@@ -9,6 +9,7 @@ app.use('/product', expressProxy('http://localhost:3002'))
 app.use('/cart', expressProxy('http://localhost:3003'))
 
 
+
 PORT=3000
 app.listen(PORT,()=>{
     console.log(`server is listening on port ${PORT}`)

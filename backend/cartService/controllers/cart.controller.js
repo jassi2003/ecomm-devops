@@ -1,4 +1,5 @@
 const addToCartModel = require("../models/cart.model")
+const { subscribeToQueue } = require("../rabbitmq");
 
 
 
@@ -143,3 +144,9 @@ module.exports.viewCartProductsController = async (req, res) => {
     }
 }
 
+
+    subscribeToQueue("USER_CREATED",(userData) => {
+      console.log(" USER_CREATED received in Cart:", userData);
+    }); 
+  
+  
