@@ -20,6 +20,9 @@ spec:
             - containerPort: 3001
 
 
+
+
+
             # TO UPLOAD DOCKER IMAGES TO KUBERNETES MANUALLY
             #step1.) cd productService
             #step2.) docker login

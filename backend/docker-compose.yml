@@ -101,10 +101,10 @@ services:
     depends_on:
       - kong-migrations
     ports:
-      - "8000:8000"
-      - "8443:8443"
-      - "8001:8001"
-      - "8444:8444"
+      - "8000:8000" #client send api  requests
+      - "8443:8443" #more secured, and send api requests over https
+      - "8001:8001" #admin api(http)
+      - "8444:8444" #admin api(https)
 
   prometheus:
     image: prom/prometheus
@@ -140,12 +140,16 @@ volumes:
 
 
 #docker-compose up -d
+
+#grafana url: http://localhost:3030
+#prometheus url:http://localhost:9090/targets
+#to start minikube:minikube start
  
 # docker pull kong  //localhost:8001/services
 #to restart: docker-compose restart kong
 # Test whether userService is running=> curl http://localhost:3000/user
-# For registering the service=> curl -i -X POST "http://localhost:8001/services/" --data "name=user-service" --data "url=http://host.docker.internal:3001"
-# For creating route for the service=> curl -i -X POST "http://localhost:8001/services/user-service/routes" --data "name=user-route" --data "paths[]=/user"
+# For registering the service=> curl -i -X POST "http://localhost:8001/services/" --data "name=product-service" --data "url=http://host.docker.internal:3002"
+# For creating route for the service=> curl -i -X POST "http://localhost:8001/services/product-service/routes" --data "name=product-route" --data "paths[]=/prodRoute"
 # Checking wheteher the route for each service is running=> curl -i http://localhost:8001/routes
 # TO DELETE THE SERVICE=> curl -i -X DELETE http://localhost:8001/services/user-service
 # TO RUN THE SERVICE=> >curl -i http://localhost:8000/user

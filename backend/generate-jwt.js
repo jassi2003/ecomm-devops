@@ -1,3 +1,7 @@
+
+
+
+
 const jwt = require('jsonwebtoken');
 
 const payload = {
@@ -10,6 +14,13 @@ const secret = "JFVeajH1EbCYIeaP2cU0b4eC2o9GlJZE"; // Use the "secret" from Kong
 const token = jwt.sign(payload, secret, { algorithm: "HS256" });
 
 console.log("My JWT Token:", token);
+
+
+
+
+
+
+
 
 
 //TO AUTHENTICATE THE SERVICES:
@@ -32,6 +43,6 @@ console.log("My JWT Token:", token);
 //2.)curl -i -X DELETE "http://localhost:8001/services/user-service/plugins/{plugin Id}"
 
 
- //for /L %i in (1,1,15) do curl -i -X GET "http://localhost:8000/user" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIwZExlUFhySHJnWTNVUWZ2MzVCYThNakpaRk9xcEJIVyIsImV4cCI6MTc0NDM3MjUyMCwiaWF0IjoxNzQ0MzY4OTIwfQ.9AH5AgyqHXpJ_YGWnzcxkAscw-DZDUg0SWAiggq9vtA"
+ //for /L %i in (1,1,15) do curl -i -X GET "http://localhost:8000/product" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIwZExlUFhySHJnWTNVUWZ2MzVCYThNakpaRk9xcEJIVyIsImV4cCI6MTc0NTY3MTA3MywiaWF0IjoxNzQ1NjY3NDczfQ.VB_Eq9RU-rvueG0Yq2voOkik4Q2XWRcZLpz3kbwCqIE"
 
 
